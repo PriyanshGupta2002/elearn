@@ -1,9 +1,11 @@
-import { Button } from "@/components/ui/button";
+import Header from "./_components/Header";
+import Hero from "./_components/Hero";
 
 const Home = () => {
   return (
-    <div className="font-pixelify-sans">
-      <Button variant={"ghost"}>Subscribe</Button>
+    <div className="flex flex-col items-center w-full">
+      <Header />
+      <Hero />
     </div>
   );
 };
