@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter, Jersey_10 } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { UserContextProvider } from "@/context/UserDetailContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -39,14 +40,16 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${pixelifySans.variable} ${inter.variable} antialiased`}
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+          <UserContextProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </UserContextProvider>
         </body>
       </html>
     </ClerkProvider>
