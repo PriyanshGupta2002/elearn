@@ -4,6 +4,15 @@ import { currentUser } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
+/**
+ * Handle POST requests to fetch an existing user by the authenticated user's email or create a new user record if none exists.
+ *
+ * @returns A NextResponse JSON containing either:
+ * - the existing user object when a matching user is found,
+ * - the newly created user object when no match exists,
+ * - an error object `{ error: "User email not found" }` with status `400` when the authenticated user lacks an email,
+ * - or an error object `{ error: "Internal server error" }` with status `500` on failure.
+ */
 export async function POST() {
   try {
     const user = await currentUser();
